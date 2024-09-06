@@ -7,8 +7,8 @@ const searchLanguague = document.getElementById("languague") as HTMLSelectElemen
 const searchButton = document.getElementById("searchBtn") as HTMLButtonElement;
 const contentOutputDiv = document.getElementById("contentOutput") as HTMLDivElement;
 
-const url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=e6eb7fe4b580498bad7db83f5b390fb0";
-const API = "e6eb7fe4b580498bad7db83f5b390fb0";
+const url = "https://newsapi.org/v2/everything";
+const API = "&apiKey=e6eb7fe4b580498bad7db83f5b390fb0";
 
 let articleArray: IArticle[] = [];
 
@@ -46,10 +46,17 @@ function displayArticles(articles: IArticle[]) {
       if (article.urlToImage) {
         contentOutputDiv.appendChild(createImage(article.urlToImage));
       }
+      if (article.publishedAt){
+        contentOutputDiv.appendChild(createParagraph(article.publishedAt))
+      }
     });
   }
 }
-
+function createDate(value: Date): HTMLParagraphElement {
+    const date = document.createElement("p") as HTMLParagraphElement;
+    date.textContent = value.getTime;
+    return date;
+  }
 function createParagraph(value: string): HTMLParagraphElement {
   const paragraph = document.createElement("p") as HTMLParagraphElement;
   paragraph.textContent = value;
@@ -77,7 +84,7 @@ function createImage(linkImg: string): HTMLImageElement {
 function sortAndDisplayArticles(articlesArray: IArticle[], sortValue: string) {
     let sortedArticles: IArticle[];
     if (sortValue === "NeuesteZuerst") {
-      sortedArticles = [...articlesArray].sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime());
+        [...articlesArray].sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
     } else {
       sortedArticles = [...articlesArray].sort(
         (a, b) => a.title - b.title

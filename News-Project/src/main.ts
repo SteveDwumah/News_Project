@@ -1,24 +1,35 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import { IArticle, IEmpty, ISource } from "./interface/IArticles";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+const searchInput = document.getElementById("search-input") as HTMLInputElement
+const searchRelevanz = document.getElementById("relevanz")  as HTMLSelectElement
+const searchLanguague = document.getElementById("languague") as HTMLSelectElement
+const searchButton = document.getElementById("searchBtn") as HTMLButtonElement
+const contentOutputDiv = document.getElementById("contentOutput") as HTMLDivElement
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+const url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=e6eb7fe4b580498bad7db83f5b390fb0"
+const API = "e6eb7fe4b580498bad7db83f5b390fb0"
+const country = ['ar', 'de', 'us', 'sp', 'fr', 'hr', 'it', 'nl', 'nw', 'pt', 'ru', 'sw', 'ch'];
+
+fetch(url)
+  .then((resp: Response) => {
+    if (resp.ok) {
+      return resp.json();
+    } else {
+      throw Error();
+    }
+  })
+  .then((results: IEmpty) => {
+    return results.articles;
+  })
+  .then((result: IArticle[]) => {
+    console.log(result);
+    displayArticles(result);
+  })
+  .catch((error) => {
+    contentOutputDiv.innerHTML = `Could not get data, Error: ${error}`;
+  });
+
+  function displayArticles(article: IArticle) {
+    
+
+  }

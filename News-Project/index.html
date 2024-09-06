@@ -4,10 +4,38 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <script type="module" src="/src/main.ts" defer></script>
+    <title>Project-News</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+    <h1>NEWS APP</h1>
+    <div id="filterDiv">
+      <input type="search" name="" id="searchInput" placeholder="Suchbegriff">
+      <select name="" id="relevanz">
+        <option value="">Sortieren nach</option>
+        <option value="Relevanz">Relevanz</option>
+        <option value="Popularitaet">Popularität</option>
+        <option value="NeuesteZuerst">Neueste zuerst</option>
+      </select>
+      <select name="" id="languague">
+        <option value="">Sort by</option>
+        <option value="Arabisch">Arabisch</option>
+        <option value="Deutsch">Deutsch</option>
+        <option value="Englisch">Englisch</option>
+        <option value="Spanisch">Spanisch</option>
+        <option value="Franzoesisch">Französisch</option>
+        <option value="Hebraeisch">Hebräisch</option>
+        <option value="Italienisch">Italienisch</option>
+        <option value="Niederlaendisch">Niederländisch</option>
+        <option value="Norwegisch">Norwegisch</option>
+        <option value="Portugiesisch">Portugiesisch</option>
+        <option value="Russisch">Russisch</option>
+        <option value="Schwedisch">Schwedisch</option>
+        <option value="Chinesisch">Chinesisch</option>
+      </select>
+      <button type="submit" id="searchBtn">Suchen</button>
+    </div>
+    <div id="contentOutput"></div>
+    </body>
+    
 </html>

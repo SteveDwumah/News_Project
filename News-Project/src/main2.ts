@@ -73,5 +73,22 @@ function createImage(linkImg: string): HTMLImageElement {
     );
     displayArticles(filteredProducts);
 }
-electroBtn.addEventListener("click", () => filterByCategory("electronics"));
-searchButton.addEventListener("click", ())
+
+function sortAndDisplayArticles(articlesArray: IArticle[], sortValue: string) {
+    let sortedArticles: IArticle[];
+    if (sortValue === "NeuesteZuerst") {
+      sortedArticles = [...articlesArray].sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime());
+    } else {
+      sortedArticles = [...articlesArray].sort(
+        (a, b) => a.title - b.title
+      );
+    }
+    console.log(sortedArticles);
+    displayArticles(sortedArticles);
+  }
+
+  searchRelevanz.addEventListener("change", () => {
+    const sortValue = searchRelevanz.value;
+    console.log(sortValue);
+    sortAndDisplayArticles(articleArray, sortValue);
+  });

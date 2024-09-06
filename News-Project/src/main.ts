@@ -32,30 +32,57 @@ let articleArray: IArticle[] = [];
 //     contentOutputDiv.innerHTML = `Could not get data, Error: ${error}`;
 //   });
 
-if(contentOutputDiv){
-  fetch(url)
-  .then((response: Response) => {
-      if(response.ok){
-          return response.json()
-      } else{
-          throw Error(`${response.status} ${response.statusText}`)
-      }
-  })
-  .then((results: IEmpty) => {
-         console.log(results);
+// if(contentOutputDiv){
+//   fetch(url)
+//   .then((response: Response) => {
+//       if(response.ok){
+//           return response.json()
+//       } else{
+//           throw Error(`${response.status} ${response.statusText}`)
+//       }
+//   })
+//   .then((results: IEmpty) => {
+//          console.log(results);
          
-         return results.articles;
-       })
-  .then((result: IArticle[]) => {
-      console.log(result);
-      articleArray = result
-      displayArticles(articleArray)
-  })
-  .catch((error) => {
-      contentOutputDiv.innerHTML = `Could not get data, Error: ${error}`
-  })
+//          return results.articles;
+//        })
+//   .then((result: IArticle[]) => {
+//       console.log(result);
+//       articleArray = result
+//       displayArticles(articleArray)
+//   })
+//   .catch((error) => {
+//       contentOutputDiv.innerHTML = `Could not get data, Error: ${error}`
+//   })
   
-}
+// }
+
+fetch(BASE_URL)
+  .then((resp: Response) => {
+    if (!resp.ok) {
+      throw new Error("Couldn't find any products");
+    }
+    return resp.json();
+  })
+  .then((data: IProdukts[]) => {
+
+    productsArray = data;
+    displayProducts(productsArray);
+  })
+  .catch((err: Error) => {
+
+    if (output) {
+      output.innerHTML = <p>Error fetching data: ${err.message}</p>;
+    } else {
+      console.error("Error fetching data:", err.message);
+    }
+  })
+  .finally(() => {
+
+    if (loadingIndicator) {
+      loadingIndicator.style.display = "none";
+    }
+  });
 
 
 

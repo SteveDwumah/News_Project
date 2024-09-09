@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src='./src/main.ts' defer></script>
+    <title>Project News</title>
+  </head>
+  <body>
+    <h1>NEWS APP</h1>
+    <form action=""><div id="filterDiv">
+      <input type="search" name="" id="searchInput" placeholder="Suchbegriff">
+      <select name="" id="relevanz">
+        <option value="">Sortieren nach</option>
+        <option value="relevancy">Relevanz</option>
+        <option value="popularity">Popularität</option>
+        <option value="publishedAt">Neueste zuerst</option>
+      </select>
+      <select name="" id="language">
+        <option value="">Sort by</option>
+        <option value="ar">Arabisch</option>
+        <option value="de">Deutsch</option>
+        <option value="en">Englisch</option>
+        <option value="es">Spanisch</option>
+        <option value="fr">Französisch</option>
+        <option value="he">Hebräisch</option>
+        <option value="it">Italienisch</option>
+        <option value="nl">Niederländisch</option>
+        <option value="no">Norwegisch</option>
+        <option value="pt">Portugiesisch</option>
+        <option value="ru">Russisch</option>
+        <option value="sv">Schwedisch</option>
+        <option value="zh">Chinesisch</option>
+      </select>
+      <button type="submit" id="searchBtn">Suchen</button></form>
+    </div>
+    <div id="contentOutput"></div>
+    </body>
+    
+</html>
